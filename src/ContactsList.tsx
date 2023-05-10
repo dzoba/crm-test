@@ -19,6 +19,17 @@ const ContactsList: React.FC = () => {
     }
   };
 
+  const testFunction = async () => {
+    const { data, error } = await supabase.functions.invoke('hello', {
+      body: { name: 'Functions' },
+    })
+    if (error) {
+      console.error('Error calling hello:', error)
+    } else {
+      console.log('Success:', data)
+    }
+  }
+
   return (
     <div>
       <h1>Contact List</h1>
@@ -29,6 +40,7 @@ const ContactsList: React.FC = () => {
           </li>
         ))}
       </ul>
+      <button onClick={testFunction}>Test function</button>
     </div>
   );
 };
