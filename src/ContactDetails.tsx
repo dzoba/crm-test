@@ -30,6 +30,20 @@ const ContactDetails: React.FC = () => {
     }
   };
 
+  const generateImage = async () => {
+    if (contact) {
+      const fullName = `${contact.first_name} ${contact.last_name}`;
+      const { data, error } = await supabase.functions.invoke('image-gen', {
+        body: { name: fullName, contactId: contact.id },
+      });
+
+      if (data) {
+        console.log('Generated image data:', data);
+      } else {
+        console.error('Error generating image:', error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -49,6 +63,7 @@ const ContactDetails: React.FC = () => {
             <strong>Phone:</strong> {contact.phone}
           </p>
           <Link to={`/edit/${contact.id}`}>Edit</Link>
+          <button onClick={generateImage}>Generate Image</button>
         </>
       ) : (
         <p>Loading contact details...</p>

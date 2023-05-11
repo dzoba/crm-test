@@ -33,14 +33,31 @@ const ContactsList: React.FC = () => {
   return (
     <div>
       <h1>Contact List</h1>
-      <ul>
-        {contacts.map((contact) => (
-          <li key={contact.id}>
-            <Link to={`/contact/${contact.id}`}>{contact.first_name} {contact.last_name}</Link>
-          </li>
-        ))}
-      </ul>
-      <button onClick={testFunction}>Test function</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact) => (
+            <tr key={contact.id}>
+              <td>
+                {contact.avatar_url ? (
+                  <img src={contact.avatar_url} alt={`${contact.first_name} ${contact.last_name}`} style={{ width: '50px', height: '50px' }} />
+                ) : (
+                  <div style={{ width: '50px', height: '50px', backgroundColor: 'grey' }}></div>
+                )}
+              </td>
+              <td>
+                <Link to={`/contact/${contact.id}`}>{contact.first_name} {contact.last_name}</Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={testFunction}>Say Hello</button>
     </div>
   );
 };

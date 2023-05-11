@@ -17,6 +17,7 @@ export interface Database {
           id: number
           last_name: string | null
           phone: string | null
+          avatar_url: string | null
         }
         Insert: {
           created_at?: string | null
@@ -25,6 +26,7 @@ export interface Database {
           id?: number
           last_name?: string | null
           phone?: string | null
+          avatar_url: string | null
         }
         Update: {
           created_at?: string | null
@@ -33,6 +35,7 @@ export interface Database {
           id?: number
           last_name?: string | null
           phone?: string | null
+          avatar_url: string | null
         }
       }
     }
